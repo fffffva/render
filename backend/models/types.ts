@@ -15,7 +15,7 @@ export interface AuthenticatedRequest extends Request {
     newName?: string;
     image?: string;
     chatId?: string;
-    userId: string;
+    userId?: string;
   };
 }
 

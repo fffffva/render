@@ -5,6 +5,10 @@ export interface RequestMessage extends Request {
       user?: {
             _id: string;
       }
+      body: {
+            content: string;
+            chatId: string;
+      }
 }
 
 const messageModel = new mongoose.Schema({

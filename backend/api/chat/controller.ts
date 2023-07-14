@@ -1,11 +1,11 @@
 
-import type { Response , Request} from 'express'
+import type { Response } from 'express'
 import type { User } from '../../models/user.model'
 import { updateUsersInGroupChatService, createChatService, createGroupChatService, getChatsService, getUserChatsService, removeFromGroupChatService, renameGroupChatService, updateGroupImageService, removeChatService } from './service'
 import { handleErrorService } from '../../middleware/errorMiddleware'
-import { AuthenticatedRequest, RequestWithUser } from '../../models/types'
+import { RequestChat } from '../../models/chat.model'
 
-export async function createChat (req: AuthenticatedRequest, res: Response) {
+export async function createChat (req: RequestChat, res: Response) {
       const { userId } = req.body
       const currentUser = req.user as User
 
@@ -18,7 +18,7 @@ export async function createChat (req: AuthenticatedRequest, res: Response) {
       }
 }
 
-export async function getChats (req: AuthenticatedRequest, res: Response) {
+export async function getChats (req: RequestChat, res: Response) {
       try {
             const chats = await getChatsService(req.user as User)
             res.status(200).send(chats)
@@ -27,7 +27,7 @@ export async function getChats (req: AuthenticatedRequest, res: Response) {
       }
 }
 
-export async function getUserChats (req: RequestWithUser, res: Response) {
+export async function getUserChats (req: RequestChat, res: Response) {
       const { userId } = req.params
 
       if (!userId) {
@@ -43,7 +43,7 @@ export async function getUserChats (req: RequestWithUser, res: Response) {
       }
 }
 
-export async function createGroupChat (req: RequestWithUser, res: Response) {
+export async function createGroupChat (req: RequestChat, res: Response) {
       const { users, chatName, groupImage } = req.body
       const currentUser = req.user as User
 
@@ -58,7 +58,7 @@ export async function createGroupChat (req: RequestWithUser, res: Response) {
       }
 }
 
-export async function renameGroupChat (req: Request, res: Response) {
+export async function renameGroupChat (req: RequestChat, res: Response) {
       const { chatId, groupName } = req.body
 
       if (!chatId) return res.status(400).json({ message: 'No chat id sent to the server' })
@@ -72,7 +72,7 @@ export async function renameGroupChat (req: Request, res: Response) {
       }
 }
 
-export async function updateGroupImage (req: Request, res: Response) {
+export async function updateGroupImage (req: RequestChat, res: Response) {
       const { chatId, groupImage } = req.body
 
       if (!chatId) return res.status(400).json({ message: 'No chat id sent to the server' })
@@ -86,7 +86,7 @@ export async function updateGroupImage (req: Request, res: Response) {
       }
 }
 
-export async function updateUsersInGroupChat (req: Request, res: Response) {
+export async function updateUsersInGroupChat (req: RequestChat, res: Response) {
       const { chatId, users } = req.body
 
       if (!users) return res.status(400).json({ message: 'No users sent to the server' })
@@ -100,7 +100,7 @@ export async function updateUsersInGroupChat (req: Request, res: Response) {
       }
 }
 
-export async function removeFromGroupChat (req: Request, res: Response) {
+export async function removeFromGroupChat (req: RequestChat, res: Response) {
       const { chatId, userId } = req.body
       
       if (!userId) return res.status(400).json({ message: 'No user id sent to the server' })
@@ -116,7 +116,7 @@ export async function removeFromGroupChat (req: Request, res: Response) {
 
 // this function add the userId to the chat in the deletedBy key array
 // if the deletedBy array length is equal to the number of users in the chat then the chat is deleted with all its messages
-export async function removeChat (req: Request, res: Response) {
+export async function removeChat (req: RequestChat, res: Response) {
       const { chatId, userId } = req.body
 
       try {

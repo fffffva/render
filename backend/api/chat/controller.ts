@@ -27,7 +27,7 @@ export async function getChats (req: AuthenticatedRequest, res: Response) {
       }
 }
 
-export async function getUserChats (req: AuthenticatedRequest, res: Response) {
+export async function getUserChats (req: RequestWithUser, res: Response) {
       const { userId } = req.params
 
       if (!userId) {

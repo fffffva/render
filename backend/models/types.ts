@@ -21,4 +21,9 @@ export interface AuthenticatedRequest extends Request {
 
 export interface RequestWithUser extends Request {
   user: User;
+  body: {
+    users: string[];
+    chatName: string
+    groupImage: string;
+  }
 }

@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base {
+
+      :root {
+            --color-text-base: #242424;
+            --color-text-muted: #c7d2fe;
+      }
+
+      body {
+            @apply text-[#242424] font-sf-regular scroll-smooth;
+      }
+      
+      *::-webkit-scrollbar,
+      *::-webkit-scrollbar-thumb {
+        width: 0;
+        border-radius: 13px;
+        border: 10px solid transparent;
+      }
+      
+      *::-webkit-scrollbar-thumb {        
+        box-shadow: inset 0 0 0 5px #d9dedb90  ;
+      }
+      
+      :focus-visible {
+            outline: none;
+      }
+
+      @font-face {
+            font-family: 'sf-pro-display';
+            src: url('../assets/fonts/SF-Pro-Text-Regular.ttf');
+      }
+      
+      @font-face {
+            font-family: 'litia';
+            src: url('../assets/fonts/LilitaOne-Regular.ttf');
+      }
+      
+      @font-face {
+            font-family: 'alfa';
+            font-weight: 600;
+            color: #242424;
+            src: local('alfa') url('../assets/fonts/AlfaSlabOne-Regular.ttf') format('ttf');
+      }
+}
+
+@layer components {
+      /* LOGIN PAGE */
+      .login-btn {
+            @apply w-full rounded-xl text-gray-700 py-2 font-semibold transition-colors duration-200;
+      }
+      .login-input {
+            @apply border-2 border-gray-300 rounded-md p-2 focus:border-primary focus:outline-none  transition-colors duration-300;
+      }
+      .error-message{
+            @apply text-red-500 text-sm;
+      }
+      .input-error{
+            @apply border-red-500;
+      }
+
+      /* MESSAGE FILTER */
+      .message-filter-icon {
+            @apply hover:text-blue-500 hover:bg-gray-200 p-2 text-gray-400 flex items-center justify-center rounded-xl transition-colors duration-200 cursor-pointer;
+      }
+      /* SIDE MENU */
+      .side-icon {
+            @apply flex justify-center h-11 md:h-12 text-primary my-1 mx-3 md:mx-[9px] items-center  rounded-[20px] cursor-pointer transition-colors duration-300 hover:bg-gray-200;
+      }
+      .active-side-icon {
+            @apply bg-primary text-white  hover:bg-[#2286c9];
+            box-shadow: 0 6px 9px 3px #95c1df;
+      }
+      .messenger{
+            display: grid;
+            grid-template-rows:auto 1fr auto ;
+      }
+
+      /* Create Group */
+      .upload-img{
+            @apply w-32 h-32 rounded-full mx-auto text-center bg-gray-200 flex items-center justify-center cursor-pointer;
+      }
+      .upload-img:hover .overlay{
+            display: block;
+      }
+
+      /* Settings */
+      .choose-bg {
+            @apply w-24 h-28  rounded-xl cursor-pointer ;
+      }
+}
+
+@layer utilities{
+      .custom-hover{
+            @apply transition-opacity duration-300 opacity-80 cursor-pointer hover:opacity-100;
+      }
+      .cut-text{
+            text-overflow: ellipsis;
+            
+            overflow: hidden; 
+            height: 2rem; 
+            white-space: nowrap;
+      }
+      .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+            -ms-overflow-style: none; 
+            scrollbar-width: none; 
+      }
+
+      .drop-shadow-gray {
+            filter: drop-shadow(0px 10px 6px gray);
+      }
+      .drop-shadow-primary {
+            filter: drop-shadow(0px 0px 18px #71c6ff);
+      }
+      .custom-shadow {
+            box-shadow: 0 10px 62px 6px #0099ff4f;
+            transform: scale(1.02);
+            font-weight: bold;
+      }
+}
+
+.MuiPopover-paper{
+      @apply !top-[81px] !right-[40px] !left-auto;
+}
+.MuiAvatar-img{
+      @apply object-top;
+}

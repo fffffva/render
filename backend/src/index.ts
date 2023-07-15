@@ -51,9 +51,8 @@ app.use('/api/chat', chatRoutes)
 app.use('/api/message', messageRoutes)
 setupSocketAPI(server)
 
-app.use(notFound)
-app.use(errorHandler)
-
+// app.use(notFound)
+// app.use(errorHandler)
 
 const port = process.env.PORT || 5000
 

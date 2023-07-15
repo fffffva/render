@@ -42,6 +42,10 @@ if (process.env.NODE_ENV === 'production') {
       app.use(cors(corsOptions))
 }
 
+app.get('/**', (_: Request, res: Response) => {
+      res.sendFile(path.join(__dirname, '../../client/dist', 'index.html'))
+})
+
 app.use('/api/auth', userRoutes)
 app.use('/api/chat', chatRoutes)
 app.use('/api/message', messageRoutes)
@@ -50,9 +54,6 @@ setupSocketAPI(server)
 app.use(notFound)
 app.use(errorHandler)
 
-app.get('/**', (_: Request, res: Response) => {
-      res.sendFile(path.join(__dirname, '../../client/dist', 'index.html'))
-})
 
 const port = process.env.PORT || 5000
 

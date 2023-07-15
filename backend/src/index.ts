@@ -43,7 +43,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.get('/**', (_: Request, res: Response) => {
-      res.sendFile(path.join(__dirname, '../../../client/dist', 'index.html'))
+      res.sendFile(path.join(__dirname, '../../../client', 'index.html'))
 })
 
 app.use('/api/auth', userRoutes)

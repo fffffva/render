@@ -10,7 +10,15 @@ export default defineConfig({
         target: 'http://localhost:5000',
         changeOrigin: true,
       }
-    }
+    },
+    fs: {
+      strict: false,
+    },
   },
-  base: '/render/',
+  build: {
+    target: 'esnext',
+    outDir: './dist',
+    sourcemap: true,
+  },
+  base: '/',
 })

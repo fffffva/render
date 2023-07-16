@@ -9,7 +9,7 @@ import { Tooltip } from '@mui/material'
 import Form from '../components/Auth/Form'
 
 import { WavesBlue } from '../assets/icons/Bubble'
-
+console.log('mode',process.env.MODE , 'NODE',process.env.NODE_ENV)
 export default function Auth () {
       const [isVisible, setIsVisible] = useState(false)
       const navigate = useNavigate()

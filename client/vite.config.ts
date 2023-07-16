@@ -5,7 +5,7 @@ const API_URL = {
   development: 'http://localhost:5000',
   production: 'https://rolling-2szg.onrender.com',
 };
-
+console.log('API_URL', API_URL[process.env.MODE || 'development'] , process.env.MODE);
 export default defineConfig({
   plugins: [react()],
   server: {

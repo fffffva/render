@@ -20,7 +20,6 @@ import { router as userRoutes } from '../api/user/router'
 import { router as chatRoutes } from '../api/chat/router'
 import { router as messageRoutes } from '../api/message/router'
 import { setupSocketAPI } from './services/socket.service'
-
 const app = express()
 dotenv.config()
 connectDB()

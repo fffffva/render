@@ -15,7 +15,7 @@ export default function MessageList ({ chats }: { chats: IChat[] }) {
       const { user } = AuthState()
 
       useEffect(() => {
-            socket.emit('setup', user._id);
+            socket.emit('setup', user?._id);
 
             socket.on('new group', handleNewGroup);
 

@@ -64,7 +64,7 @@ export default function UsersToGroup ({ setIsOpen, isAddNewGroup = false, groupT
                   setIsOpen(false)
 
                   const socket = io('http://localhost:5000', { transports: ['websocket'] })
-                  socket.emit('create group', group.users, user._id, newChat)
+                  socket.emit('create group', group.users, user?._id, newChat)
             } catch (error) {
                   console.error("An error occurred while creating group:", error)
             }
@@ -72,16 +72,19 @@ export default function UsersToGroup ({ setIsOpen, isAddNewGroup = false, groupT
 
       async function onAddUsers () {
             if (group.users.length === 0) return toast.error('Please select at least one user')
+            if (!groupToEdit) return toast.error('An error occurred while updating group')
+
             try {
                   const data = await chatService.updateUsersGroup(groupToEdit._id, group.users)
                   setChats(chats.map(chat => chat._id === groupToEdit._id ? { ...chat, users: data.users } : chat))
-                  setSelectedChat({ ...selectedChat, users: data.users })
+                  if (selectedChat) {
+                        setSelectedChat({ ...selectedChat, users: data.users });
+                  }
                   toast.success('Group updated successfully')
                   setIsOpen(false)
             } catch (error) {
                   console.error("An error occurred while updating group:", error)
             }
-
       }
 
       function handleGroupUsers (user: User) {

@@ -8,7 +8,11 @@ import CloseIcon from '@mui/icons-material/Close'
 import Loading from "../Loading"
 import UsersInput from "../common/UsersInput"
 
-export default function UsersToMessage ({ setIsOpen }) {
+interface Props {
+      setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export default function UsersToMessage ({ setIsOpen }: Props): JSX.Element {
       const [filter, setFilter] = useState<string>('')
       const [isLoading, setIsLoading] = useState<boolean>(false)
       const [users, setUsers] = useState<User[]>([])
@@ -47,8 +51,6 @@ export default function UsersToMessage ({ setIsOpen }) {
             setIsOpen(false)
       }
 
-
- 
       return (
             <Typography variant="h6" component='div' className="relative">
                   <div className='flex justify-between items-center py-4 px-4 shadow-lg shadow-quinary'>

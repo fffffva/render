@@ -2,7 +2,7 @@ import { IChat } from "../model/chat.model"
 import { FormData, User } from "../model/user.model"
 import axios, { AxiosResponse } from 'axios'
 import { getAuthConfig, getConfig } from '../utils/authConfig'
-import { handleAxiosError } from '../utils/handleErrors'
+import { handleAxiosError } from "../utils/handleErrors"
 
 const STORAGE_KEY = 'loggedin-user'
 
@@ -33,9 +33,11 @@ async function getUsers (): Promise<User[]> {
             const response: AxiosResponse<User[]> = await axios.get('/api/auth/all', authConfig)
             const { data } = response
             return data
-      } catch (err) {
-            handleAxiosError(err)
-            throw err
+      } catch (error) {
+            if (axios.isAxiosError(error)) {
+                  handleAxiosError(error);
+            }
+            throw error
       }
 }
 
@@ -45,9 +47,11 @@ async function createChat (userId: string): Promise<IChat> {
             const response: AxiosResponse<IChat> = await axios.post('/api/chat', { userId }, config)
             const { data } = response
             return data
-      } catch (err) {
-            handleAxiosError(err)
-            throw err
+      } catch (error) {
+            if (axios.isAxiosError(error)) {
+                  handleAxiosError(error);
+            }
+            throw error
       }
 }
 
@@ -64,7 +68,9 @@ async function loginSignUp (credentials: FormData, login: boolean): Promise<User
 
             return data
       } catch (error) {
-            handleAxiosError(error)
+            if (axios.isAxiosError(error)) {
+                  handleAxiosError(error);
+            }
             throw error
       }
 }
@@ -82,7 +88,9 @@ async function updateUserImage (image: string): Promise<string> {
 
             return data
       } catch (error) {
-            handleAxiosError(error)
+            if (axios.isAxiosError(error)) {
+                  handleAxiosError(error);
+            }
             throw error
       }
 }
@@ -103,7 +111,9 @@ async function editUserDetails (newName: string, key: string): Promise<User> {
 
             return data
       } catch (error) {
-            handleAxiosError(error)
+            if (axios.isAxiosError(error)) {
+                  handleAxiosError(error);
+            }
             throw error
       }
 }

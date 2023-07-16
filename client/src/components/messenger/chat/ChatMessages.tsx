@@ -10,6 +10,7 @@ export default function ChatMessages ({ messages }: Props) {
 
       const { user } = AuthState()
       console.log('messages', messages)
+      if(!messages || !user) return null
       return (
             <>
                   {messages &&

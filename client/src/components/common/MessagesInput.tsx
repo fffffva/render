@@ -8,7 +8,7 @@ interface Props {
       setFilter: React.Dispatch<React.SetStateAction<string>>
 }
 
-export default function MessagesInput ({ filter, setFilter }: Props) {
+export default function MessagesInput ({ filter, setFilter }: Props): JSX.Element {
 
       return (
             <div className="mx-4">

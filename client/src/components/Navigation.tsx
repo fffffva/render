@@ -41,7 +41,7 @@ export default function Navigation ({ contentType, setContentType, showNavigatio
 
       function onLogout () {
             socket = io(ENDPOINT, { transports: ['websocket'] })
-            socket.emit('logout', user._id)
+            socket.emit('logout', user?._id)
             logout()
       }
 

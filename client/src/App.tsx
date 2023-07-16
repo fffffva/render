@@ -12,7 +12,7 @@ import AuthProvider from "./context/useAuth"
 function App () {
 
   return (
-    <Router basename="/React">
+    <Router>
       <AuthProvider>
         <Routes>
           <Route path="/" element={<Home />} />

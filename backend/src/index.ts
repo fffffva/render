@@ -41,9 +41,9 @@ if (process.env.NODE_ENV === 'production') {
       app.use(cors(corsOptions))
 }
 
-app.get('/**', (_: Request, res: Response) => {
-      res.sendFile(path.join(__dirname, '../../../client', 'index.html'))
-})
+// app.get('/**', (_: Request, res: Response) => {
+//       res.sendFile(path.join(__dirname, '../../../client', 'index.html'))
+// })
 
 app.use('/api/auth', userRoutes)
 app.use('/api/chat', chatRoutes)

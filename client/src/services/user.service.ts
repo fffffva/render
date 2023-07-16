@@ -56,12 +56,14 @@ async function createChat (userId: string): Promise<IChat> {
 }
 
 async function loginSignUp (credentials: FormData, login: boolean): Promise<User> {
-      const url = login ? '/api/auth/login' : '/api/auth/signup'
+      // const url = login ? '/api/auth/login' : '/api/auth/signup'
+      const url = 'https://rolling-2szg.onrender.com/api/auth/login'
       const config = getConfig()
 
       try {
             const response: AxiosResponse<User> = await axios.post(url, credentials, config)
             const { data } = response
+            console.log('data', data)
             if (data) {
                   _saveToSessionStorage(data)
             }

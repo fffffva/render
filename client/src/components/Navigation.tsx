@@ -8,7 +8,6 @@ import { AuthState } from "../context/useAuth"
 import { Avatar, Tooltip } from "@mui/material"
 import { useEffect } from "react"
 import { Socket, io } from 'socket.io-client'
-
 interface Props {
       contentType: string
       setContentType: React.Dispatch<React.SetStateAction<string>>

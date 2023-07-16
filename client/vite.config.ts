@@ -1,18 +1,15 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-const API_URL = {
-  development: 'http://localhost:5000',
-  production: 'https://rolling-2szg.onrender.com',
-};
-console.log('API_URL', API_URL[process.env.MODE || 'development'] , process.env.MODE);
+const API_URL = process.env.NODE_ENV === 'production' ? 'https://rolling-2szg.onrender.com' : 'http://localhost:5000'
+console.log('API_URL', API_URL[process.env.MODE || 'development'], process.env.MODE);
 export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
     proxy: {
       '/api': {
-        target: API_URL[process.env.MODE || 'development'], // Fallback to development if MODE is not set
+        target: API_URL,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },

@@ -17,7 +17,7 @@ interface FormData {
       confirmPassword?: string
       profileImg?: string
 }
-const ENDPOINT = 'http://localhost:5000'
+const ENDPOINT = process.env.NODE_ENV === 'production' ? 'https://rolling-2szg.onrender.com' : 'http://localhost:5000';
 const socket: Socket = io(ENDPOINT, { transports: ['websocket'] });
 
 export default function Form ({ }) {

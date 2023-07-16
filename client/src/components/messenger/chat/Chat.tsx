@@ -9,7 +9,7 @@ import { Socket, io } from 'socket.io-client'
 import { AuthState } from '../../../context/useAuth'
 import { IChat } from '../../../model/chat.model'
 
-const ENDPOINT = 'http://localhost:5000'
+const ENDPOINT = process.env.NODE_ENV === 'production' ? 'https://rolling-2szg.onrender.com' : 'http://localhost:5000';
 
 interface Props {
       isTyping: boolean

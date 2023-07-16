@@ -1,9 +1,10 @@
-// vite.config.js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-console.log('process.env.NODE_ENV', process.env.NODE_ENV);
-const API_URL = process.env.NODE_ENV === 'production' ? 'https://rolling-2szg.onrender.com' : 'http://localhost:5000';
+const API_URL = {
+  development: 'http://localhost:5000',
+  production: 'https://rolling-2szg.onrender.com',
+};
 
 export default defineConfig({
   plugins: [react()],
@@ -11,8 +12,9 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: API_URL,
+        target: API_URL[process.env.MODE || 'development'], // Fallback to development if MODE is not set
         changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },
@@ -20,5 +22,8 @@ export default defineConfig({
     target: 'esnext',
     outDir: './dist',
     sourcemap: true,
+  },
+  define: {
+    'process.env': {}, // Prevent process.env from being replaced during the build
   },
 });

@@ -32,14 +32,21 @@ app.use(cookieParser())
 
 if (process.env.NODE_ENV === 'production') {
       app.use(express.static(path.resolve(__dirname, '../build')))
-} else {
+    
+      // Enable CORS for your Netlify URL
       const corsOptions = {
-            origin: ['http://127.0.0.1:3000', 'http://localhost:3000'],
-            credentials: true
+        origin: 'https://64b5202d7671b00c24da817f--sprightly-pony-17a565.netlify.app',
+        credentials: true,
       }
       app.use(cors(corsOptions))
-}
-
+    } else {
+      // Your existing CORS setup for development
+      const corsOptions = {
+        origin: ['http://127.0.0.1:3000', 'http://localhost:3000'],
+        credentials: true,
+      }
+      app.use(cors(corsOptions))
+    }
 // app.get('/**', (_: Request, res: Response) => {
 //       res.sendFile(path.join(__dirname, '../../../client', 'index.html'))
 // })

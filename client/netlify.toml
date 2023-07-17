@@ -2,3 +2,6 @@
   from = "/api/*"
   to = "https://rolling-2szg.onrender.com/:splat"
   status = 200
+  force = true
+  [redirects.headers]
+    X-From = "Netlify"

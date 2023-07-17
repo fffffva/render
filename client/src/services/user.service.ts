@@ -5,7 +5,7 @@ import { getAuthConfig, getConfig } from '../utils/authConfig'
 import { handleAxiosError } from "../utils/handleErrors"
 
 const STORAGE_KEY = 'loggedin-user'
-
+const BASE_URL = process.env.NODE_ENV === 'production' ? 'https://rolling-2szg.onrender.com' : 'http://localhost:5000'
 export const userService = {
       loginSignUp,
       getLoggedinUser,
@@ -56,15 +56,12 @@ async function createChat (userId: string): Promise<IChat> {
 }
 
 async function loginSignUp (credentials: FormData, login: boolean): Promise<User> {
-      // const url = login ? '/api/auth/login' : '/api/auth/signup'
-      console.log(login)
-      const url = 'https://rolling-2szg.onrender.com/api/auth/login'
+      const path = login ? '/api/auth/login' : '/api/auth/signup'
       const config = getConfig()
 
       try {
-            const response: AxiosResponse<User> = await axios.post(url, credentials, config)
+            const response: AxiosResponse<User> = await axios.post(BASE_URL + path, credentials, config)
             const { data } = response
-            console.log('data', data)
             if (data) {
                   _saveToSessionStorage(data)
             }

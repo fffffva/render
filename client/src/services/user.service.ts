@@ -30,7 +30,7 @@ async function getUsers (): Promise<User[]> {
       const authConfig = getAuthConfig()
 
       try {
-            const response: AxiosResponse<User[]> = await axios.get('/api/auth/all', authConfig)
+            const response: AxiosResponse<User[]> = await axios.get(BASE_URL+'/api/auth/all', authConfig)
             const { data } = response
             return data
       } catch (error) {
@@ -44,7 +44,7 @@ async function getUsers (): Promise<User[]> {
 async function createChat (userId: string): Promise<IChat> {
       const config = getConfig()
       try {
-            const response: AxiosResponse<IChat> = await axios.post('/api/chat', { userId }, config)
+            const response: AxiosResponse<IChat> = await axios.post(BASE_URL+'/api/chat', { userId }, config)
             const { data } = response
             return data
       } catch (error) {
@@ -79,7 +79,7 @@ async function updateUserImage (image: string): Promise<string> {
       const config = getAuthConfig()
 
       try {
-            const response: AxiosResponse<string> = await axios.put('/api/auth/image', { image }, config)
+            const response: AxiosResponse<string> = await axios.put(BASE_URL+'/api/auth/image', { image }, config)
             const { data } = response
             if (data) {
                   const user = getLoggedinUser()
@@ -99,7 +99,7 @@ async function editUserDetails (newName: string, key: string): Promise<User> {
       const config = getAuthConfig()
 
       try {
-            const response: AxiosResponse<User> = await axios.put('/api/auth/details', { newName }, config)
+            const response: AxiosResponse<User> = await axios.put(BASE_URL+'/api/auth/details', { newName }, config)
             const { data } = response
 
 

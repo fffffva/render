@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === 'production') {
 
       // Enable CORS for your Netlify URL
       const corsOptions = {
-            origin: 'https://64b5202d7671b00c24da817f--sprightly-pony-17a565.netlify.app',
+            origin: 'https://rolling-chat.netlify.app',
             credentials: true,
       }
       app.use(cors(corsOptions))
